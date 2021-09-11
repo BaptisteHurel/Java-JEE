@@ -1,0 +1,5 @@
+::
+:: Start Container on port 8888 and expose webapps directory for delivery
+::
+
+docker run -it --name tomcat --rm --add-host=host.docker.internal:host-gateway -p 8888:8080 -v D:/docker-volumes/tomcat/webapps:/usr/local/tomcat/webapps server-tomcat:1.0
