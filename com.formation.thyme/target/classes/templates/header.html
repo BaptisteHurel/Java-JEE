@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div class="w3-left-align" th:fragment="header(msg)" th:if="${msg} != ''" style="margin-top: 1%"  >
+  <span class="mySpan">Version :</span><span class="mySpan" id="idVersion" th:text="${msg}"></span><span class="mySpan" th:text="${#calendars.format(#calendars.createNow(), 'EEEE dd MMM yyyy HH:mm:ss.SSS')}"></span>
+  <button class="w3-button w3-light-green w3-round-xxlarge" th:onclick="|window.location.href='@{/}'|">Index</button>
+</div>
+
+<div th:fragment="generalError(err)" th:if="${err} != ''" style="margin-top: 1%"  >
+  <p style="color: #ff0033" th:text="${err}"></p>
+</div>

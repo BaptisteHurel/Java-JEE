@@ -1,0 +1,37 @@
+<html lang="en"
+      xmlns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <title>Countries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/w3.css}">
+  <link rel="stylesheet" th:href="@{/css/custom.css}">
+</head>
+<body>
+
+<span th:insert="~{header :: header(${version})}"></span>
+<span th:insert="~{header :: generalError(${msgErr})}" id="msgErr"></span>
+
+<div class="w3-container w3-center">
+  <h1>Liste des Pays</h1>
+</div>
+
+<table class="w3-table-all w3-centered">
+  <thead>
+    <tr class="w3-green">
+      <th>Id</th>
+      <th>Name</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tr class="w3-hover-blue" th:each="country : ${countries}">
+    <td th:text="${country.id}"></td>
+    <td th:text="${country.name}"></td>
+    <td th:text="${country.lastUpdate}"></td>
+  </tr>
+
+</table>
+
+</body>
+</html>

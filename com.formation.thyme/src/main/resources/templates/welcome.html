@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/w3.css}">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+</head>
+<body>
+
+<span th:insert="~{header :: header(${version})}"></span>
+
+<p style="text-align:center" ><img th:src="@{/images/thyme-grocery.png}"></p>
+<h1 th:text="#{application.title}"></h1>
+<br>
+<div class="w3-center">
+    <div class="w3-bar w3-black">
+        <a href="#" class="w3-bar-item w3-button">Home</a>
+        <a th:text="#{country.title}" th:href="@{/countries}" class="w3-bar-item w3-button">Countries</a>
+        <a th:href="@{/cities}" class="w3-bar-item w3-button">Cities</a>
+    </div>
+</div>
+</body>
+</html>
