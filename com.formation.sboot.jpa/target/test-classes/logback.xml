@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" >    
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>%d [%thread] %level %logger{45} %msg%n</Pattern>
+        </encoder>
+    </appender>
+    
+    <root level="INFO">
+        <appender-ref ref="consoleAppender" />
+    </root>
+    
+    <logger name="com.formation" level="ALL" />
+    
+    
+</configuration>
+
+<!-- ALL LEVELS Table -->
+<!-- TRACE 	DEBUG 	INFO WARN ERROR OFF -->
+<!-- For colorization see at : https://github.com/Tuxdude/logback-colorizer/ -->
