@@ -1,0 +1,5 @@
+from tomcat:9.0
+run ( apt update -y && apt-get -y install vim )
+copy tomcat-users.xml /usr/local/tomcat/conf/
+run ( cp -pR /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps/ )
+copy context.xml /usr/local/tomcat/webapps/manager/META-INF/
