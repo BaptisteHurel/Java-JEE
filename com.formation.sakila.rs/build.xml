@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="delivery-to-local" name="Delivery war file on server for TESTS">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+
+    <property name="pversion" value="0.2.1"></property>
+
+    <property name="server" value="D:/runtimes/Tomcat9-Recette/webapps"/>
+    <property name="server-test" value="D:\OneDrive\POEC_TESTEUR_LOGICIEL\02-TP\Livaisons-applications"/>
+
+    <property name="from" value="${basedir}/target"></property>
+    <property name="resources" value="${basedir}/src/main/resources"></property>
+
+    <property name="produit" value="sakila.rs"></property>
+
+    <property name="warFile" value="${produit}##${pversion}.war" />
+
+    <target name="info">
+        <echo message="War file : ${produit}##${pversion}.war" />
+        <echo message="From : ${from}" />
+        <echo message="To   : ${server}" />
+        <echo message="To test  : ${server-test}" />
+        <echo message="File properties : ${resources}/application.properties" />
+    </target>
+
+    <target name="delivery-to-tests" depends="changeId, mvn-install">
+        <echo message="Delivery war to ${server} Java version : version (${ant.java.version}) " />
+        <echo message="Copy file ${warFile} from ${from} to ${server-test}" />
+
+        <copy file="${from}/${warFile}"
+              tofile="${server-test}/${warFile}" />
+    </target>
+
+    <target name="mvn-install">
+        <exec dir="." executable="cmd">
+            <arg line="/c mvn install -Dmaven.test.skip=true" />
+        </exec>
+    </target>
+
+
+    <target name="delivery-to-local" depends="change-to-java1, mvn-install">
+        <echo message="Delivery war to ${server} Java version : version (${ant.java.version}) " />
+        <echo message="Copy file ${warFile} from ${from} to ${server}" />
+
+        <copy file="${from}/${warFile}"
+              tofile="${server}/${warFile}" />
+    </target>
+
+    <target name="change-to-java1" >
+        <replaceregexp  file="${resources}/application.properties"
+                        match="spring.datasource.username=.*"
+                        replace="spring.datasource.username=java1"
+                        byline="true"
+        />
+        <replaceregexp  file="${resources}/application.properties"
+                        match="spring.datasource.password=.*"
+                        replace="spring.datasource.password=java1"
+                        byline="true"
+        />
+    </target>
+
+    <target name="changeId" >
+        <replaceregexp  file="${resources}/application.properties"
+            match="spring.datasource.username=.*"
+            replace="spring.datasource.username=root"
+            byline="true"
+        />
+        <replaceregexp  file="${resources}/application.properties"
+                        match="spring.datasource.password=.*"
+                        replace="spring.datasource.password="
+                        byline="true"
+        />
+    </target>
+</project>
